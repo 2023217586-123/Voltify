@@ -1,0 +1,17 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Theme.Voltify" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/volt_primary</item>
+        <item name="colorPrimaryVariant">@color/volt_primary_variant</item>
+        <item name="colorSecondary">@color/volt_secondary</item>
+        <item name="android:statusBarColor">@color/volt_primary_variant</item>
+        <item name="android:windowBackground">@color/volt_bg</item>
+        <item name="materialButtonStyle">@style/Widget.Voltify.MaterialButton</item>
+    </style>
+
+    <style name="Widget.Voltify.MaterialButton" parent="Widget.MaterialComponents.Button">
+        <item name="cornerRadius">24dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:paddingLeft">20dp</item>
+        <item name="android:paddingRight">20dp</item>
+    </style>
+</resources>

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@color/volt_surface">
+
+    <!-- App title (left) -->
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Voltify"
+        android:textSize="24sp"
+        android:textColor="@color/volt_text"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imgLogo"
+        android:layout_marginTop="8dp"/>
+
+    <ImageView
+        android:id="@+id/imgLogo"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/voltify_logo"
+        android:contentDescription="@string/app_name"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="4dp"/>
+
+    <!-- Input card -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardInputs"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="4dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Month">
+
+                <Spinner
+                    android:id="@+id/spinnerMonth"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Units used (kWh)"
+                android:layout_marginTop="12dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editUnits"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Rebate % (0 - 5)"
+                android:layout_marginTop="12dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editRebate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonCalc"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="16dp"
+                android:text="Calculate &amp; Save"
+                android:textColor="@android:color/white"
+                app:backgroundTint="@color/volt_primary"
+                style="@style/Widget.Voltify.MaterialButton"/>
+
+            <TextView
+                android:id="@+id/textTotal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Total charges: RM 0.00"
+                android:textColor="@color/volt_muted"
+                android:layout_marginTop="12dp"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/textFinal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Final cost (after rebate): RM 0.00"
+                android:textColor="@color/volt_muted"
+                android:layout_marginTop="4dp"
+                android:textSize="14sp"/>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Saved bills header -->
+    <TextView
+        android:id="@+id/tvSaved"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Saved bills"
+        android:textStyle="bold"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@id/cardInputs"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <!-- About button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonAbout"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:text="About"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@id/cardInputs"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        app:backgroundTint="@color/volt_secondary"
+        android:textColor="@android:color/white"
+        style="@style/Widget.Voltify.MaterialButton"/>
+
+    <!-- List -->
+    <ListView
+        android:id="@+id/listViewResults"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/tvSaved"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:divider="@android:color/darker_gray"
+        android:dividerHeight="1dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
