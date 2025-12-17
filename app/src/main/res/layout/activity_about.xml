@@ -54,12 +54,24 @@
             android:lineSpacingExtra="6dp"
             android:layout_marginBottom="24dp"/>
 
-        <!-- Back Button -->
+        <!-- GitHub link -->
+        <TextView
+            android:id="@+id/textGithub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="GitHub Repository: https://github.com/2023217586-123/Voltify.git
+"
+            android:textColor="@color/volt_primary"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Back button -->
         <Button
             android:id="@+id/buttonBack"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Back"/>
+
 
     </LinearLayout>
 </ScrollView>
