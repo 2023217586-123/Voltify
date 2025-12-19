@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="volt_primary">#0B66FF</color>    <!-- blue -->
+    <color name="volt_primary">#047678</color>    <!-- blue -->
     <color name="volt_primary_variant">#084FCD</color>
     <color name="volt_secondary">#00BFA6</color>  <!-- teal accent -->
     <color name="volt_bg">#FFFFFF</color>

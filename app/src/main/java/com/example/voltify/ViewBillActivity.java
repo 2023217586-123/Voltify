@@ -5,14 +5,15 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Locale;
 
 public class ViewBillActivity extends AppCompatActivity {
 
-    TextView txtMonth, txtUnits, txtTotal, txtRebate, txtFinal;
-    Button btnBack;
+    TextView textMonth, textUnits, textTotal, textRebate, textFinal;
+    Button buttonBack;
     DataHelper dbHelper;
 
     @Override
@@ -20,42 +21,45 @@ public class ViewBillActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_bill);
 
-        // Bind views
-        txtMonth = findViewById(R.id.textViewMonth);
-        txtUnits = findViewById(R.id.textViewUnits);
-        txtTotal = findViewById(R.id.textViewTotal);
-        txtRebate = findViewById(R.id.textViewRebate);
-        txtFinal = findViewById(R.id.textViewFinal);
-        btnBack = findViewById(R.id.buttonBack);
+        textMonth = findViewById(R.id.textViewMonth);
+        textUnits = findViewById(R.id.textViewUnits);
+        textTotal = findViewById(R.id.textViewTotal);
+        textRebate = findViewById(R.id.textViewRebate);
+        textFinal = findViewById(R.id.textViewFinal);
+        buttonBack = findViewById(R.id.buttonBack);
 
         dbHelper = new DataHelper(this);
 
-        // Get ID from intent
-        int id = getIntent().getIntExtra("id", -1);
-        if (id == -1) {
-            finish(); // safety
-            return;
+        int billId = getIntent().getIntExtra("bill_id", -1);
+
+        if (billId != -1) {
+            loadBillDetails(billId);
         }
 
-        // Query database
+        buttonBack.setOnClickListener(v -> finish());
+    }
+
+    private void loadBillDetails(int billId) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery(
-                "SELECT month, units, total, rebate, final FROM bill WHERE id = ?",
-                new String[]{String.valueOf(id)}
+                "SELECT month, units, total, rebate, final FROM bill WHERE id=?",
+                new String[]{String.valueOf(billId)}
         );
 
         if (cursor.moveToFirst()) {
-            txtMonth.setText(cursor.getString(0));
-            txtUnits.setText(String.valueOf(cursor.getInt(1)));
-            txtTotal.setText(String.format(Locale.US, "RM %.2f", cursor.getDouble(2)));
-            txtRebate.setText(String.format(Locale.US, "%.2f %%", cursor.getDouble(3)));
-            txtFinal.setText(String.format(Locale.US, "RM %.2f", cursor.getDouble(4)));
+            String month = cursor.getString(0);
+            int units = cursor.getInt(1);
+            double total = cursor.getDouble(2);
+            double rebate = cursor.getDouble(3);
+            double finalCost = cursor.getDouble(4);
+
+            textMonth.setText("Month: " + month);
+            textUnits.setText("Units (kWh): " + units);
+            textTotal.setText("Total charges: RM " + String.format(Locale.US, "%.2f", total));
+            textRebate.setText("Rebate: " + rebate + "%");
+            textFinal.setText("Final cost: RM " + String.format(Locale.US, "%.2f", finalCost));
         }
 
         cursor.close();
-
-        btnBack.setOnClickListener(v -> finish());
     }
 }
-
-

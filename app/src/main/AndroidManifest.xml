@@ -19,6 +19,8 @@
         <activity android:name=".AboutActivity" android:exported="false"/>
         <activity android:name=".ViewBillActivity" android:exported="false"/>
         <activity android:name=".MainActivity" android:exported="false"/>
+        <activity android:name=".ListBillActivity" />
+
     </application>
 
 </manifest>

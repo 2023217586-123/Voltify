@@ -1,26 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="64dp"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:gravity="center_vertical">
+    android:padding="12dp">
 
     <TextView
-        android:id="@+id/itemMonth"
-        android:layout_width="match_parent"
+        android:id="@+id/textMonth"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Jan"
+        android:text="January"
         android:textSize="16sp"
-        android:textColor="@color/volt_text"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/itemFinal"
-        android:layout_width="match_parent"
+        android:id="@+id/textAmount"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="RM 0.00"
         android:textSize="14sp"
-        android:textColor="@color/volt_muted"/>
+        android:layout_marginTop="4dp" />
+
 </LinearLayout>

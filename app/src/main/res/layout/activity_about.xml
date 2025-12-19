@@ -2,76 +2,99 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:padding="20dp">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal">
+        android:orientation="vertical">
 
         <!-- App Logo -->
         <ImageView
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:src="@drawable/voltify_logo"
-            android:contentDescription="Voltify Logo"
-            android:layout_marginBottom="12dp"/>
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="12dp" />
 
         <!-- App Name -->
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Voltify"
             android:textSize="22sp"
             android:textStyle="bold"
-            android:layout_marginBottom="8dp"/>
-
-        <!-- Short description -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Track your bills easier with Voltify"
-            android:textSize="14sp"
             android:gravity="center"
-            android:layout_marginBottom="16dp"/>
+            android:layout_marginBottom="16dp" />
 
         <!-- Student Photo -->
         <ImageView
-            android:layout_width="120dp"
-            android:layout_height="120dp"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
             android:src="@drawable/my_photo"
-            android:contentDescription="Student Photo"
-            android:layout_marginBottom="16dp"/>
+            android:scaleType="centerCrop"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="20dp" />
 
-        <!-- Student Info -->
+        <!-- Student Information -->
         <TextView
-            android:id="@+id/textAbout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:gravity="center"
-            android:lineSpacingExtra="6dp"
-            android:layout_marginBottom="24dp"/>
+            android:text="Student Name: Najidah Safiyyah Binti Ahmad Saifuzzaman"
+            android:layout_marginBottom="4dp" />
 
-        <!-- GitHub link -->
         <TextView
-            android:id="@+id/textGithub"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="GitHub Repository: https://github.com/2023217586-123/Voltify.git
-"
-            android:textColor="@color/volt_primary"
+            android:text="Student ID: 2023217586"
+            android:layout_marginBottom="4dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Course: ICT602 Mobile Technology and Development"
+            android:layout_marginBottom="16dp" />
+
+        <!-- GitHub URL -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Application Source Code:"
             android:textStyle="bold"
-            android:layout_marginBottom="16dp"/>
+            android:layout_marginBottom="4dp" />
 
-        <!-- Back button -->
-        <Button
-            android:id="@+id/buttonBack"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Back"/>
+            android:text="https://github.com/2023217586-123/Voltify.git"
+            android:autoLink="web"
+            android:layout_marginBottom="24dp" />
 
+        <!-- Instruction Title -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="How to Use Voltify"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Instructions -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="1. Select the month.\n2. Enter electricity usage in kWh.\n3. Enter rebate percentage (0–5%).\n4. Tap Calculate &amp; Save to store the bill.\n5. Tap saved biils to view all saved Electricity Bills.\n6. Select a bill to view details or delete it."
+            android:lineSpacingExtra="6dp"
+            android:layout_marginBottom="32dp" />
+
+        <!-- Footer / Copyright -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="© 2025 Voltify.Created by Najidah Safiyyah. All rights reserved."
+            android:textSize="12sp"
+            android:gravity="center"
+            android:layout_marginTop="24dp" />
 
     </LinearLayout>
 </ScrollView>
