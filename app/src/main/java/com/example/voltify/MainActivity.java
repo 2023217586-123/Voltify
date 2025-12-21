@@ -58,12 +58,12 @@ public class MainActivity extends AppCompatActivity {
         // Calculate & Save
         buttonCalc.setOnClickListener(v -> calculateAndSave());
 
-        // Go to list bill page
+        // Navigate to saved bills
         buttonViewBills.setOnClickListener(v ->
                 startActivity(new Intent(this, ListBillActivity.class))
         );
 
-        // Go to about page
+        // Navigate to about page
         buttonAbout.setOnClickListener(v ->
                 startActivity(new Intent(this, AboutActivity.class))
         );
@@ -75,38 +75,56 @@ public class MainActivity extends AppCompatActivity {
         String unitsStr = editUnits.getText().toString().trim();
         String rebateStr = editRebate.getText().toString().trim();
 
-        // Validation
+        // Clear previous errors
+        editUnits.setError(null);
+        editRebate.setError(null);
+
+        // Case 1: Nothing entered
+        if (unitsStr.isEmpty() && rebateStr.isEmpty()) {
+            editUnits.setError("Please enter electricity usage");
+            editRebate.setError("Please enter rebate (0 if none)");
+            return;
+        }
+
+        // Case 2: Units missing
         if (unitsStr.isEmpty()) {
             editUnits.setError("Please enter electricity usage");
             return;
         }
 
+        // Case 3: Rebate missing
         if (rebateStr.isEmpty()) {
-            rebateStr = "0";
+            editRebate.setError("Please enter rebate (0 if none)");
+            return;
         }
 
+        // Validate units
         int units;
-        double rebate;
-
         try {
             units = Integer.parseInt(unitsStr);
-            rebate = Double.parseDouble(rebateStr);
+            if (units <= 0) {
+                editUnits.setError("Usage must be greater than 0");
+                return;
+            }
         } catch (NumberFormatException e) {
-            Toast.makeText(this, "Invalid input", Toast.LENGTH_SHORT).show();
+            editUnits.setError("Invalid number");
             return;
         }
 
-        if (units < 0) {
-            editUnits.setError("Units cannot be negative");
+        // Validate rebate
+        double rebate;
+        try {
+            rebate = Double.parseDouble(rebateStr);
+            if (rebate < 0 || rebate > 5) {
+                editRebate.setError("Rebate must be between 0 and 5%");
+                return;
+            }
+        } catch (NumberFormatException e) {
+            editRebate.setError("Invalid rebate value");
             return;
         }
 
-        if (rebate < 0 || rebate > 5) {
-            editRebate.setError("Rebate must be between 0 and 5%");
-            return;
-        }
-
-        // Calculation
+        // Calculate charges
         double total = calculateTotal(units);
         double finalCost = total - (total * rebate / 100);
 
@@ -131,15 +149,15 @@ public class MainActivity extends AppCompatActivity {
 
         Toast.makeText(this, "Bill saved successfully", Toast.LENGTH_SHORT).show();
 
-        // Clear input
+        // Clear input fields
         editUnits.setText("");
         editRebate.setText("");
     }
 
-    // Block tariff calculation
+    // Electricity tariff calculation
     private double calculateTotal(int units) {
 
-        double total = 0;
+        double total;
 
         if (units <= 200) {
             total = units * 0.218;
